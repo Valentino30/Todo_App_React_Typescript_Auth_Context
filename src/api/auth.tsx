@@ -1,5 +1,5 @@
+import { apiCall } from "../utils";
 import { CredentialsType } from "../types/auth";
-import { apiCall } from "../shared/utils";
 
 export const registerRequest = async ({ email, password }: CredentialsType) => {
   const response = await apiCall.post("/register", {

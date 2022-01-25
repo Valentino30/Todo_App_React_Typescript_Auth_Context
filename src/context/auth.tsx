@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 import { loginRequest, registerRequest } from "../api/auth";
-import { AuthContextType, AuthProviderType, CredentialsType } from "../types/auth";
+import { AuthContextType, AuthProviderType, CredentialsType, UserType } from "../types/auth";
 
 const AuthContext = createContext({} as AuthContextType);
 
@@ -10,7 +10,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: AuthProviderType) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<UserType | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const register = (credentials: CredentialsType) => {
