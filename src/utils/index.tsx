@@ -1,5 +1,5 @@
 // import axios from "axios";
-import { v4 as uuid } from "uuid";
+import { nanoid } from "nanoid";
 
 // const baseUrl = process.env.REACT_APP_API;
 
@@ -9,7 +9,8 @@ export const apiCall = {
     // const response = await axios.post(targetUrl, body);
     const response = {
       data: {
-        id: uuid(),
+        id: nanoid(),
+        token: nanoid(),
         email: "vale@gmail.com",
       },
     };

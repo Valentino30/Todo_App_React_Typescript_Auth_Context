@@ -1,7 +1,13 @@
-import { createContext, useContext, useState } from "react";
+import Cookies from "js-cookie";
+import { createContext, useContext, useEffect, useState } from "react";
 
+import {
+  UserType,
+  AuthContextType,
+  CredentialsType,
+  AuthProviderType,
+} from "../types/auth";
 import { loginRequest, registerRequest } from "../api/auth";
-import { AuthContextType, AuthProviderType, CredentialsType, UserType } from "../types/auth";
 
 const AuthContext = createContext({} as AuthContextType);
 
@@ -13,11 +19,25 @@ export const AuthProvider = ({ children }: AuthProviderType) => {
   const [user, setUser] = useState<UserType | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  useEffect(() => {
+    const id = Cookies.get("id");
+    const email = Cookies.get("email");
+    const token = Cookies.get("token");
+
+    if (id && email) {
+      setUser({ email, id, token });
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   const register = (credentials: CredentialsType) => {
     registerRequest(credentials)
       .then((data) => {
-        setIsAuthenticated(true);
         setUser(data);
+        setIsAuthenticated(true);
+        Cookies.set("token", data.token);
+        Cookies.set("email", data.email);
+        Cookies.set("id", data.id);
       })
       .catch((error) => {
         alert(error.response.data.error);
@@ -36,8 +56,11 @@ export const AuthProvider = ({ children }: AuthProviderType) => {
   };
 
   const logout = () => {
-    setIsAuthenticated(false);
     setUser(null);
+    setIsAuthenticated(false);
+    Cookies.remove("id");
+    Cookies.remove("email");
+    Cookies.remove("token");
   };
 
   return (
