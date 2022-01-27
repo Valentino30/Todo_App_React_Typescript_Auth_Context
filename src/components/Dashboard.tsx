@@ -1,4 +1,7 @@
+import Text from "../shared/Text";
+import Header from "../shared/Header";
 import Button from "../shared/Button";
+
 import { useAuth } from "../context/auth";
 
 export default function Dashboard() {
@@ -6,10 +9,10 @@ export default function Dashboard() {
   return (
     <div>
       <Button handleClick={logout}>Logout</Button>
-      <h1>Dashboard</h1>
-      <p>{`id: ${user?.id}`}</p>
-      <p>{`email: ${user?.email}`}</p>
-      <p>{`token: ${user?.token}`}</p>
+      <Header>Dashboard</Header>
+      <Text>{`id: ${user?.id}`}</Text>
+      <Text>{`email: ${user?.email}`}</Text>
+      <Text>{`token: ${user?.token}`}</Text>
     </div>
   );
 }

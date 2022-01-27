@@ -15,7 +15,8 @@ function App() {
           <Route path="/" element={<Dashboard />} />
         </Route>
         <Route element={<PublicRoutes />}>
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/login" element={<Auth />} />
+          <Route path="/register" element={<Auth />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

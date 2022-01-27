@@ -4,5 +4,12 @@ type FormProps = {
 };
 
 export default function Form({ children, handleSubmit }: FormProps) {
-  return <form onSubmit={handleSubmit}>{children}</form>;
+  return (
+    <form
+      onSubmit={handleSubmit}
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      {children}
+    </form>
+  );
 }
