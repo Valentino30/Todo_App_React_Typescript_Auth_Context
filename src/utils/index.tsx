@@ -17,3 +17,21 @@ export const apiCall = {
     return response;
   },
 };
+
+export const sampleTodos = [
+  {
+    id: nanoid(),
+    name: "Todo 1",
+    isComplete: false,
+  },
+  {
+    id: nanoid(),
+    name: "Todo 2",
+    isComplete: false,
+  },
+  {
+    id: nanoid(),
+    name: "Todo 3",
+    isComplete: false,
+  },
+];
